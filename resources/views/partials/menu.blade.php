@@ -88,6 +88,45 @@
                         </ul>
                     </li>
                 @endcan
+                @can('sportslist_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/sports*") ? "menu-open" : "" }} {{ request()->is("admin/sports-types*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-basketball-ball">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.sportslist.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('sport_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.sports.index") }}" class="nav-link {{ request()->is("admin/sports") || request()->is("admin/sports/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.sport.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('sports_type_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.sports-types.index") }}" class="nav-link {{ request()->is("admin/sports-types") || request()->is("admin/sports-types/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-football-ball">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.sportsType.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
                 @can('so_player_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/players*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
@@ -116,7 +155,7 @@
                     </li>
                 @endcan
                 @can('coach_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/coach-categories*") ? "menu-open" : "" }} {{ request()->is("admin/sports*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/coach-categories*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-cogs">
 
@@ -135,18 +174,6 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.coachCategory.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('sport_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.sports.index") }}" class="nav-link {{ request()->is("admin/sports") || request()->is("admin/sports/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-cogs">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.sport.title') }}
                                         </p>
                                     </a>
                                 </li>
