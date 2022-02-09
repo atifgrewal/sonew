@@ -4,6 +4,7 @@ namespace App\Models;
 
 use \DateTimeInterface;
 use App\Notifications\VerifyUserNotification;
+use App\Traits\Auditable;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -22,9 +23,14 @@ class User extends Authenticatable implements HasMedia
     use SoftDeletes;
     use Notifiable;
     use InteractsWithMedia;
+    use Auditable;
     use HasFactory;
 
     public $table = 'users';
+
+    public static $searchable = [
+        'city',
+    ];
 
     protected $appends = [
         'profile_picture',
@@ -47,6 +53,8 @@ class User extends Authenticatable implements HasMedia
         'email',
         'phone_number',
         'password',
+        'address',
+        'city',
         'email_verified_at',
         'approved',
         'remember_token',

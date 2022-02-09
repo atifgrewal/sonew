@@ -38,6 +38,12 @@
                                         {{ trans('cruds.user.fields.profile_picture') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.address') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.user.fields.city') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.user.fields.email_verified_at') }}
                                     </th>
                                     <th>
@@ -72,6 +78,12 @@
                                                     <img src="{{ $user->profile_picture->getUrl('thumb') }}">
                                                 </a>
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $user->address ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $user->city ?? '' }}
                                         </td>
                                         <td>
                                             {{ $user->email_verified_at ?? '' }}

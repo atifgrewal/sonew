@@ -7,18 +7,18 @@ use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Sport extends Model implements HasMedia
+class SportsType extends Model
 {
     use SoftDeletes;
-    use InteractsWithMedia;
     use Auditable;
     use HasFactory;
 
-    public $table = 'sports';
+    public $table = 'sports_types';
+
+    public static $searchable = [
+        'sports_type',
+    ];
 
     protected $dates = [
         'created_at',
@@ -27,18 +27,11 @@ class Sport extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'sport',
-        'description',
+        'sports_type',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

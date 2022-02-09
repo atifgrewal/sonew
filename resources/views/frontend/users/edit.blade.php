@@ -65,6 +65,26 @@
                             <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="address">{{ trans('cruds.user.fields.address') }}</label>
+                            <input class="form-control" type="text" name="address" id="address" value="{{ old('address', $user->address) }}">
+                            @if($errors->has('address'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('address') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.user.fields.address_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">{{ trans('cruds.user.fields.city') }}</label>
+                            <input class="form-control" type="text" name="city" id="city" value="{{ old('city', $user->city) }}">
+                            @if($errors->has('city'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('city') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.user.fields.city_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <div>
                                 <input type="hidden" name="approved" value="0">
                                 <input type="checkbox" name="approved" id="approved" value="1" {{ $user->approved || old('approved', 0) === 1 ? 'checked' : '' }}>

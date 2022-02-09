@@ -28,6 +28,15 @@ class UpdateUserRequest extends FormRequest
             'phone_number' => [
                 'numeric',
             ],
+            'address' => [
+                'string',
+                'max:250',
+                'nullable',
+            ],
+            'city' => [
+                'string',
+                'nullable',
+            ],
             'roles.*' => [
                 'integer',
             ],
