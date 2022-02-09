@@ -19,4 +19,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Sports
     Route::post('sports/media', 'SportsApiController@storeMedia')->name('sports.storeMedia');
     Route::apiResource('sports', 'SportsApiController');
+
+    // Sports Type
+    Route::apiResource('sports-types', 'SportsTypeApiController');
 });

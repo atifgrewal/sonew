@@ -117,11 +117,6 @@
                                             {{ trans('cruds.coachCategory.title') }}
                                         </a>
                                     @endcan
-                                    @can('sport_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.sports.index') }}">
-                                            {{ trans('cruds.sport.title') }}
-                                        </a>
-                                    @endcan
                                     @can('content_management_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.contentManagement.title') }}
@@ -155,6 +150,21 @@
                                     @can('faq_question_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.faq-questions.index') }}">
                                             {{ trans('cruds.faqQuestion.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('sportslist_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.sportslist.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('sport_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.sports.index') }}">
+                                            {{ trans('cruds.sport.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('sports_type_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.sports-types.index') }}">
+                                            {{ trans('cruds.sportsType.title') }}
                                         </a>
                                     @endcan
 

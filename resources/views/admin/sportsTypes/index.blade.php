@@ -1,47 +1,35 @@
 @extends('layouts.admin')
 @section('content')
-@can('sport_create')
+@can('sports_type_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.sports.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.sport.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.sports-types.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.sportsType.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.sport.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.sportsType.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Sport">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-SportsType">
             <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.sport.fields.id') }}
+                        {{ trans('cruds.sportsType.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.sport.fields.sport') }}
+                        {{ trans('cruds.sportsType.fields.sports_type') }}
                     </th>
                     <th>
                         &nbsp;
                     </th>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
                 </tr>
             </thead>
         </table>
@@ -56,11 +44,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('sport_delete')
+@can('sports_type_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.sports.massDestroy') }}",
+    url: "{{ route('admin.sports-types.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
@@ -92,44 +80,23 @@
     serverSide: true,
     retrieve: true,
     aaSorting: [],
-    ajax: "{{ route('admin.sports.index') }}",
+    ajax: "{{ route('admin.sports-types.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'sport', name: 'sport' },
+{ data: 'sports_type', name: 'sports_type' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   };
-  let table = $('.datatable-Sport').DataTable(dtOverrideGlobals);
+  let table = $('.datatable-SportsType').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
   
-let visibleColumnsIndexes = null;
-$('.datatable thead').on('input', '.search', function () {
-      let strict = $(this).attr('strict') || false
-      let value = strict && this.value ? "^" + this.value + "$" : this.value
-
-      let index = $(this).parent().index()
-      if (visibleColumnsIndexes !== null) {
-        index = visibleColumnsIndexes[index]
-      }
-
-      table
-        .column(index)
-        .search(value, strict)
-        .draw()
-  });
-table.on('column-visibility.dt', function(e, settings, column, state) {
-      visibleColumnsIndexes = []
-      table.columns(":visible").every(function(colIdx) {
-          visibleColumnsIndexes.push(colIdx);
-      });
-  })
 });
 
 </script>

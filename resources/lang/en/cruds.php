@@ -69,6 +69,10 @@ return [
             'approved_helper'          => ' ',
             'profile_picture'          => 'Profile Picture',
             'profile_picture_helper'   => ' ',
+            'address'                  => 'Address',
+            'address_helper'           => ' ',
+            'city'                     => 'City',
+            'city_helper'              => ' ',
         ],
     ],
     'player' => [
@@ -278,5 +282,25 @@ return [
             'deleted_at'        => 'Deleted At',
             'deleted_at_helper' => ' ',
         ],
+    ],
+    'sportsType' => [
+        'title'          => 'Sports Type',
+        'title_singular' => 'Sports Type',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => ' ',
+            'sports_type'        => 'Sports Type',
+            'sports_type_helper' => ' ',
+            'created_at'         => 'Created at',
+            'created_at_helper'  => ' ',
+            'updated_at'         => 'Updated at',
+            'updated_at_helper'  => ' ',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => ' ',
+        ],
+    ],
+    'sportslist' => [
+        'title'          => 'Sports',
+        'title_singular' => 'Sport',
     ],
 ];

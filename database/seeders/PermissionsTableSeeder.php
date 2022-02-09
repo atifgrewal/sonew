@@ -260,6 +260,30 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 63,
+                'title' => 'sports_type_create',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'sports_type_edit',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'sports_type_show',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'sports_type_delete',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'sports_type_access',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'sportslist_access',
+            ],
+            [
+                'id'    => 69,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -62,6 +62,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('faq-questions/destroy', 'FaqQuestionController@massDestroy')->name('faq-questions.massDestroy');
     Route::resource('faq-questions', 'FaqQuestionController');
 
+    // Sports Type
+    Route::delete('sports-types/destroy', 'SportsTypeController@massDestroy')->name('sports-types.massDestroy');
+    Route::resource('sports-types', 'SportsTypeController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -138,6 +142,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Faq Question
     Route::delete('faq-questions/destroy', 'FaqQuestionController@massDestroy')->name('faq-questions.massDestroy');
     Route::resource('faq-questions', 'FaqQuestionController');
+
+    // Sports Type
+    Route::delete('sports-types/destroy', 'SportsTypeController@massDestroy')->name('sports-types.massDestroy');
+    Route::resource('sports-types', 'SportsTypeController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

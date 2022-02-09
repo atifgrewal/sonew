@@ -12,18 +12,51 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class SportsController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('sport_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sports = Sport::all();
+        if ($request->ajax()) {
+            $query = Sport::query()->select(sprintf('%s.*', (new Sport())->table));
+            $table = Datatables::of($query);
 
-        return view('admin.sports.index', compact('sports'));
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) {
+                $viewGate = 'sport_show';
+                $editGate = 'sport_edit';
+                $deleteGate = 'sport_delete';
+                $crudRoutePart = 'sports';
+
+                return view('partials.datatablesActions', compact(
+                'viewGate',
+                'editGate',
+                'deleteGate',
+                'crudRoutePart',
+                'row'
+            ));
+            });
+
+            $table->editColumn('id', function ($row) {
+                return $row->id ? $row->id : '';
+            });
+            $table->editColumn('sport', function ($row) {
+                return $row->sport ? $row->sport : '';
+            });
+
+            $table->rawColumns(['actions', 'placeholder']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.sports.index');
     }
 
     public function create()
